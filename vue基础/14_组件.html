@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <my-component title="111">
+            <h3>11111</h3>
+            <p>11111</p>
+        </my-component>
+        <my-component title = '222'>
+            <h3>22222</h3>
+            <p>22222</p>
+        </my-component>
+
+    </div>
+
+
+    <template id="temp">
+        <div>
+            <h2>{{title}}</h2>
+            <slot></slot>
+            <p>{{count}}</p>
+            <button @click="add()">click</button>
+        </div>
+
+    </template>
+    <!-- 父组件向子组件传值, 用props:[''] -->
+
+    <script src="vue.js"></script>
+    <script>
+        Vue.component("myComponent", {
+            template: "<div>hhaa</div>"
+        })  // 全局组件
+
+        new Vue({
+            el: "#app",
+            data: {
+
+            },
+            components: {  // 局部组件
+                "myComponent": {
+                    template: "#temp",
+                    props:['title'],
+                    data() {
+                        return {
+                            count: 0,
+                        }
+                    },
+                    methods:{
+                        add(){
+                            this.count ++;
+                        }
+                    }
+                }
+            },
+        })
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .a{
+            color:red;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="name" @keyup="filt()">
+        <button @click = "add()">add</button>
+        <ul>
+            <li v-for="(obj,index) in list" @click="change(obj)" :class={a:obj.isred} v-show = "obj.isshow">{{obj.name}}<button @click.stop = "del(index)">del</button></li>
+            
+        </ul>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                list:[
+                    {name:'aa',isred:false,isshow:true},
+                    {name:'bb',isred:false,isshow:true}
+                ],
+                name:'',
+            },
+            methods:{
+                add(){
+                    this.list.push({name:this.name,isred:false,isshow:true});
+                    this.name = "";
+                    this.filt();
+                },
+                change(obj){
+                    obj.isred = !obj.isred;
+                },
+                del(index){
+                    // splice方法的三个参数 索引  删除个数  添加
+                    this.list.splice(index,1);
+                },
+                filt(){
+                    // 取到input的value
+                    // 站到包含value的li显示,并把其他的li隐藏
+                    let value = this.name;
+                    this.list.forEach(function(obj,index){
+                        if(obj.name.includes(value)){// 包含
+                            obj.isshow=true;
+                        }else{
+                            obj.isshow=false;
+                        }
+                    })
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

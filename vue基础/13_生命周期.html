@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="add()">click</button>
+        <h2>{{count}}</h2>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                count: 0
+            },
+            methods:{
+                add(){
+                    this.count ++;
+                }
+            },
+            beforeCreate() {
+                // console.log("hahha");
+                console.log(this.$el, this.$data);
+            },
+            created() {// el还没有初始化  数据已经初始化了
+                console.log(this.$el, this.$data);
+
+            },
+            beforeMount() {  // el也初始化,但是还没有挂载在到app上
+                console.log(this.$el, this.$data);
+
+            },
+            mounted() { // el挂载完成
+                console.log(this.$el, this.$data);
+
+            },
+            beforeUpdate() {   // 更新 ,比如说+- 数据更新 但是页面还没有更新和updated的区别
+                console.log(this.$el, this.$data);
+            },
+            updated() {
+                console.log(this.$el, this.$data);
+
+            },
+            beforeDestory(){
+                console.log(this.$el, this.$data);
+            },
+            destoryed(){
+                console.log(this.$el, this.$data);
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>

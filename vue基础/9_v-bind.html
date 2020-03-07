@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .a{
+            background: red;
+        }
+        .b{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- v-bind 绑定属性 -->
+        <!-- 对象的形式绑定 :class = {class名:boolean} -->
+        <div v-bind:class="{a:isA,b:isB}">11111111</div>
+        <!-- 数组形式绑定 -->
+        <div v-bind:class="[classA,classB]">11111111</div>
+
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        var vm = new Vue({  
+            el:"#app",
+            data:{
+                isA:true,
+                isB:true,
+                classA:"a",
+                classB:'b'
+            }
+        })
+
+
+    </script>
+</body>
+</html>
